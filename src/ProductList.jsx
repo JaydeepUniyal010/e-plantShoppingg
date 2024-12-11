@@ -364,7 +364,7 @@ function ProductList() {
       {!showCart ? (
         <div className="product-grid">
           {plantsArray.map((category) => (
-            <div key={category.category}>
+            <div className="category" key={category.category}>
               <h2>{category.category}</h2>
               <div className="product-list">
                 {category.plants.map((plant) => (
@@ -379,11 +379,18 @@ function ProductList() {
                       <p>{plant.description}</p>
                       <p className="product-price">{plant.cost}</p>
                       <button
-                        className="product-button"
-                        onClick={() => handleAddToCart(plant)}
-                      >
-                        Add to Cart
-                      </button>
+                      className="product-button"
+                      onClick={(e) => {
+                        // Call the handleAddToCart function
+                        handleAddToCart(plant);
+
+                        // Toggle the button text
+                        const btn = e.target;
+                        btn.innerText = btn.innerText === "Add to Cart" ? "Added to Cart" : "Add to Cart";
+                      }}
+                    >
+                      Add to Cart
+                    </button>
                     </div>
                   </div>
                 ))}
